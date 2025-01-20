@@ -5,9 +5,9 @@
 brew install just
 just setup
 source .venv/bin/activate
-code .env
 just dev
 just ping
+code .env
 ```
 
 ## Setup Guide
@@ -22,6 +22,7 @@ Use one of these of your choice, or refer to [the just docs](https://github.com/
 
 ```bash
 brew install just
+npm install -g rust-just && alias just="rust-just"
 apt install just
 cargo install just
 ```
@@ -33,22 +34,22 @@ just setup
 source .venv/bin/activate
 ```
 
-### 3. Set up credentials and API keys
-Open `.env` and add the keys for providers like OpenAI and Neo4J so you can access their API's.
-```bash
-code .env
-```
-
-### 4. Generate BAML Client and Boot up Dev Server
+### 3. Generate BAML Client and Boot up Dev Server
 We provide a shortcut to spin up the web server under the `dev` recipe.
 ```bash
 just dev
 ```
 
-### 5. Check the Server with a GET Request
+### 4. Check the Server with a GET Request
 Once the server is running, open a concurrent terminal and check whether it's up using the `ping` recipe.
 ```bash
 just ping
+```
+
+### 5. Set up credentials and API keys
+Open `.env` and add the keys for providers like OpenAI and Neo4J so you can access their API's.
+```bash
+code .env
 ```
 
 ## Coding Environment
