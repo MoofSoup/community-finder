@@ -16,7 +16,7 @@
 import baml_py
 from enum import Enum
 from pydantic import BaseModel, ConfigDict
-from typing import Dict, Generic, List, Literal, Optional, TypeVar, Union
+from typing import Dict, Generic, List, Literal, Optional, TypeVar, Union, TypeAlias
 
 
 T = TypeVar('T')
@@ -39,167 +39,39 @@ def all_succeeded(checks: Dict[CheckName, Check]) -> bool:
 
 
 
-class Category(str, Enum):
-    
-    Refund = "Refund"
-    CancelOrder = "CancelOrder"
-    TechnicalSupport = "TechnicalSupport"
-    AccountIssue = "AccountIssue"
-    Question = "Question"
-
-class MyEnum(str, Enum):
-    
-    VALUE1 = "VALUE1"
-    VALUE2 = "VALUE2"
-    VALUE3 = "VALUE3"
-
-class Role(str, Enum):
-    
-    Customer = "Customer"
-    Assistant = "Assistant"
-
-class Answer(BaseModel):
-    
-    
-    answersInText: List["Citation"]
-    answer: str
-
-class BookAnalysis(BaseModel):
-    
-    
-    bookNames: List[str]
-    popularityOverTime: List["PopularityOverTime"]
-
-class CharacterDescription(BaseModel):
-    
-    
-    name: str
-    clothingItems: List[str]
-    hairColor: Optional[str] = None
-    smellDescription: str
-    spells: List["Spells"]
-
-class Citation(BaseModel):
-    
-    
-    documentTitle: str
-    sourceLink: str
-    relevantTextFromDocument: str
-    number: int
-
 class Company(BaseModel):
-    
-    
     name: str
-
-class Context(BaseModel):
-    
-    
-    documents: List["Document"]
 
 class CytoscapeEdge(BaseModel):
-    
-    
     data: "CytoscapeEdgeData"
 
 class CytoscapeEdgeData(BaseModel):
-    
-    
     id: str
     source: str
     target: str
     label: str
 
 class CytoscapeJSON(BaseModel):
-    
-    
     elements: "Elements"
 
 class CytoscapeNode(BaseModel):
-    
-    
     data: Dict[str, str]
 
-class Document(BaseModel):
-    
-    
-    title: str
-    text: str
-    link: str
-
 class DynamicOutput(BaseModel):
-    
     model_config = ConfigDict(extra='allow')
-    
-
-class Education(BaseModel):
-    
-    
-    school: str
-    degree: str
-    year: int
 
 class Elements(BaseModel):
-    
-    
     nodes: List["CytoscapeNode"]
     edges: List["CytoscapeEdge"]
 
 class Event(BaseModel):
-    
-    
     name: str
     description: str
     link: str
     speaker: "Speaker"
     datetime: str
 
-class Message(BaseModel):
-    
-    
-    role: "Role"
-    content: str
-
-class PopularityOverTime(BaseModel):
-    
-    
-    bookName: str
-    scores: List["Score"]
-
-class Ranking(BaseModel):
-    
-    
-    bookName: str
-    score: int
-
-class Resume(BaseModel):
-    
-    
-    name: str
-    education: List["Education"]
-    skills: List[str]
-
-class Score(BaseModel):
-    
-    
-    year: int
-    score: int
-
 class Speaker(BaseModel):
-    
-    
     name: str
     title: str
     company: Optional["Company"] = None
-
-class Spells(BaseModel):
-    
-    
-    name: str
-    description: str
-
-class WordCount(BaseModel):
-    
-    
-    bookName: str
-    count: int

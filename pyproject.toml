@@ -1,0 +1,16 @@
+[project]
+name = "community-finder"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "baml>=0.19.1",
+    "baml-py>=0.72.1",
+    "fastapi>=0.115.6",
+    "html2text>=2024.2.26",
+    "neo4j>=5.27.0",
+    "python-dotenv>=1.0.1",
+    "requests>=2.32.3",
+    "uvicorn>=0.34.0",
+]

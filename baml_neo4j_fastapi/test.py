@@ -1,10 +1,11 @@
-
-from dotenv import load_dotenv
-
-load_dotenv()
-
 from baml_client.type_builder import TypeBuilder
 from baml_client import b
+from baml_client import reset_baml_env_vars
+
+from dotenv import load_dotenv
+load_dotenv()
+
+reset_baml_env_vars(dict(os.environ))
 
 def dynamicBuilder():
     tb = TypeBuilder()

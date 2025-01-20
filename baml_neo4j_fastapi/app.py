@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import os
 from baml_client import b
-from baml_client.types import Message, Role
+from baml_client import reset_baml_env_vars
 from fastapi.responses import StreamingResponse
 from .cytoscape2neo4j import upload_cytoscape_to_neo4j, download_neo4j_to_cytoscape
 from typing import List
@@ -13,6 +13,7 @@ import json
 from dotenv import load_dotenv
 
 load_dotenv()
+reset_baml_env_vars(dict(os.environ))
 
 app = FastAPI()
 

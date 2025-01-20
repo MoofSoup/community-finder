@@ -50,98 +50,6 @@ class BamlAsyncClient:
 
 
     
-    async def AnalyzeBooks(
-        self,
-        input: str,
-        baml_options: BamlCallOptions = {},
-    ) -> types.BookAnalysis:
-      __tb__ = baml_options.get("tb", None)
-      if __tb__ is not None:
-        tb = __tb__._tb
-      else:
-        tb = None
-      __cr__ = baml_options.get("client_registry", None)
-
-      raw = await self.__runtime.call_function(
-        "AnalyzeBooks",
-        {
-          "input": input,
-        },
-        self.__ctx_manager.get(),
-        tb,
-        __cr__,
-      )
-      return cast(types.BookAnalysis, raw.cast_to(types, types))
-    
-    async def AnswerQuestion(
-        self,
-        question: str,context: types.Context,
-        baml_options: BamlCallOptions = {},
-    ) -> types.Answer:
-      __tb__ = baml_options.get("tb", None)
-      if __tb__ is not None:
-        tb = __tb__._tb
-      else:
-        tb = None
-      __cr__ = baml_options.get("client_registry", None)
-
-      raw = await self.__runtime.call_function(
-        "AnswerQuestion",
-        {
-          "question": question,"context": context,
-        },
-        self.__ctx_manager.get(),
-        tb,
-        __cr__,
-      )
-      return cast(types.Answer, raw.cast_to(types, types))
-    
-    async def ClassifyMessage(
-        self,
-        convo: List[types.Message],
-        baml_options: BamlCallOptions = {},
-    ) -> List[types.Category]:
-      __tb__ = baml_options.get("tb", None)
-      if __tb__ is not None:
-        tb = __tb__._tb
-      else:
-        tb = None
-      __cr__ = baml_options.get("client_registry", None)
-
-      raw = await self.__runtime.call_function(
-        "ClassifyMessage",
-        {
-          "convo": convo,
-        },
-        self.__ctx_manager.get(),
-        tb,
-        __cr__,
-      )
-      return cast(List[types.Category], raw.cast_to(types, types))
-    
-    async def DescribeCharacter(
-        self,
-        first_image: baml_py.Image,
-        baml_options: BamlCallOptions = {},
-    ) -> types.CharacterDescription:
-      __tb__ = baml_options.get("tb", None)
-      if __tb__ is not None:
-        tb = __tb__._tb
-      else:
-        tb = None
-      __cr__ = baml_options.get("client_registry", None)
-
-      raw = await self.__runtime.call_function(
-        "DescribeCharacter",
-        {
-          "first_image": first_image,
-        },
-        self.__ctx_manager.get(),
-        tb,
-        __cr__,
-      )
-      return cast(types.CharacterDescription, raw.cast_to(types, types))
-    
     async def ExtractEvents(
         self,
         raw_text: str,
@@ -149,7 +57,7 @@ class BamlAsyncClient:
     ) -> List[types.Event]:
       __tb__ = baml_options.get("tb", None)
       if __tb__ is not None:
-        tb = __tb__._tb
+        tb = __tb__._tb # type: ignore (we know how to use this private attribute)
       else:
         tb = None
       __cr__ = baml_options.get("client_registry", None)
@@ -172,7 +80,7 @@ class BamlAsyncClient:
     ) -> str:
       __tb__ = baml_options.get("tb", None)
       if __tb__ is not None:
-        tb = __tb__._tb
+        tb = __tb__._tb # type: ignore (we know how to use this private attribute)
       else:
         tb = None
       __cr__ = baml_options.get("client_registry", None)
@@ -188,29 +96,6 @@ class BamlAsyncClient:
       )
       return cast(str, raw.cast_to(types, types))
     
-    async def ExtractResume(
-        self,
-        raw_text: str,
-        baml_options: BamlCallOptions = {},
-    ) -> types.Resume:
-      __tb__ = baml_options.get("tb", None)
-      if __tb__ is not None:
-        tb = __tb__._tb
-      else:
-        tb = None
-      __cr__ = baml_options.get("client_registry", None)
-
-      raw = await self.__runtime.call_function(
-        "ExtractResume",
-        {
-          "raw_text": raw_text,
-        },
-        self.__ctx_manager.get(),
-        tb,
-        __cr__,
-      )
-      return cast(types.Resume, raw.cast_to(types, types))
-    
     async def GenerateCytoscapeGraph(
         self,
         input: Union[str, baml_py.Image],
@@ -218,7 +103,7 @@ class BamlAsyncClient:
     ) -> types.CytoscapeJSON:
       __tb__ = baml_options.get("tb", None)
       if __tb__ is not None:
-        tb = __tb__._tb
+        tb = __tb__._tb # type: ignore (we know how to use this private attribute)
       else:
         tb = None
       __cr__ = baml_options.get("client_registry", None)
@@ -245,127 +130,6 @@ class BamlStreamClient:
       self.__ctx_manager = ctx_manager
 
     
-    def AnalyzeBooks(
-        self,
-        input: str,
-        baml_options: BamlCallOptions = {},
-    ) -> baml_py.BamlStream[partial_types.BookAnalysis, types.BookAnalysis]:
-      __tb__ = baml_options.get("tb", None)
-      if __tb__ is not None:
-        tb = __tb__._tb
-      else:
-        tb = None
-      __cr__ = baml_options.get("client_registry", None)
-
-      raw = self.__runtime.stream_function(
-        "AnalyzeBooks",
-        {
-          "input": input,
-        },
-        None,
-        self.__ctx_manager.get(),
-        tb,
-        __cr__,
-      )
-
-      return baml_py.BamlStream[partial_types.BookAnalysis, types.BookAnalysis](
-        raw,
-        lambda x: cast(partial_types.BookAnalysis, x.cast_to(types, partial_types)),
-        lambda x: cast(types.BookAnalysis, x.cast_to(types, types)),
-        self.__ctx_manager.get(),
-      )
-    
-    def AnswerQuestion(
-        self,
-        question: str,context: types.Context,
-        baml_options: BamlCallOptions = {},
-    ) -> baml_py.BamlStream[partial_types.Answer, types.Answer]:
-      __tb__ = baml_options.get("tb", None)
-      if __tb__ is not None:
-        tb = __tb__._tb
-      else:
-        tb = None
-      __cr__ = baml_options.get("client_registry", None)
-
-      raw = self.__runtime.stream_function(
-        "AnswerQuestion",
-        {
-          "question": question,
-          "context": context,
-        },
-        None,
-        self.__ctx_manager.get(),
-        tb,
-        __cr__,
-      )
-
-      return baml_py.BamlStream[partial_types.Answer, types.Answer](
-        raw,
-        lambda x: cast(partial_types.Answer, x.cast_to(types, partial_types)),
-        lambda x: cast(types.Answer, x.cast_to(types, types)),
-        self.__ctx_manager.get(),
-      )
-    
-    def ClassifyMessage(
-        self,
-        convo: List[types.Message],
-        baml_options: BamlCallOptions = {},
-    ) -> baml_py.BamlStream[List[Optional[types.Category]], List[types.Category]]:
-      __tb__ = baml_options.get("tb", None)
-      if __tb__ is not None:
-        tb = __tb__._tb
-      else:
-        tb = None
-      __cr__ = baml_options.get("client_registry", None)
-
-      raw = self.__runtime.stream_function(
-        "ClassifyMessage",
-        {
-          "convo": convo,
-        },
-        None,
-        self.__ctx_manager.get(),
-        tb,
-        __cr__,
-      )
-
-      return baml_py.BamlStream[List[Optional[types.Category]], List[types.Category]](
-        raw,
-        lambda x: cast(List[Optional[types.Category]], x.cast_to(types, partial_types)),
-        lambda x: cast(List[types.Category], x.cast_to(types, types)),
-        self.__ctx_manager.get(),
-      )
-    
-    def DescribeCharacter(
-        self,
-        first_image: baml_py.Image,
-        baml_options: BamlCallOptions = {},
-    ) -> baml_py.BamlStream[partial_types.CharacterDescription, types.CharacterDescription]:
-      __tb__ = baml_options.get("tb", None)
-      if __tb__ is not None:
-        tb = __tb__._tb
-      else:
-        tb = None
-      __cr__ = baml_options.get("client_registry", None)
-
-      raw = self.__runtime.stream_function(
-        "DescribeCharacter",
-        {
-          "first_image": first_image,
-        },
-        None,
-        self.__ctx_manager.get(),
-        tb,
-        __cr__,
-      )
-
-      return baml_py.BamlStream[partial_types.CharacterDescription, types.CharacterDescription](
-        raw,
-        lambda x: cast(partial_types.CharacterDescription, x.cast_to(types, partial_types)),
-        lambda x: cast(types.CharacterDescription, x.cast_to(types, types)),
-        self.__ctx_manager.get(),
-      )
-    
     def ExtractEvents(
         self,
         raw_text: str,
@@ -373,7 +137,7 @@ class BamlStreamClient:
     ) -> baml_py.BamlStream[List[partial_types.Event], List[types.Event]]:
       __tb__ = baml_options.get("tb", None)
       if __tb__ is not None:
-        tb = __tb__._tb
+        tb = __tb__._tb # type: ignore (we know how to use this private attribute)
       else:
         tb = None
       __cr__ = baml_options.get("client_registry", None)
@@ -403,7 +167,7 @@ class BamlStreamClient:
     ) -> baml_py.BamlStream[Optional[str], str]:
       __tb__ = baml_options.get("tb", None)
       if __tb__ is not None:
-        tb = __tb__._tb
+        tb = __tb__._tb # type: ignore (we know how to use this private attribute)
       else:
         tb = None
       __cr__ = baml_options.get("client_registry", None)
@@ -426,36 +190,6 @@ class BamlStreamClient:
         self.__ctx_manager.get(),
       )
     
-    def ExtractResume(
-        self,
-        raw_text: str,
-        baml_options: BamlCallOptions = {},
-    ) -> baml_py.BamlStream[partial_types.Resume, types.Resume]:
-      __tb__ = baml_options.get("tb", None)
-      if __tb__ is not None:
-        tb = __tb__._tb
-      else:
-        tb = None
-      __cr__ = baml_options.get("client_registry", None)
-
-      raw = self.__runtime.stream_function(
-        "ExtractResume",
-        {
-          "raw_text": raw_text,
-        },
-        None,
-        self.__ctx_manager.get(),
-        tb,
-        __cr__,
-      )
-
-      return baml_py.BamlStream[partial_types.Resume, types.Resume](
-        raw,
-        lambda x: cast(partial_types.Resume, x.cast_to(types, partial_types)),
-        lambda x: cast(types.Resume, x.cast_to(types, types)),
-        self.__ctx_manager.get(),
-      )
-    
     def GenerateCytoscapeGraph(
         self,
         input: Union[str, baml_py.Image],
@@ -463,7 +197,7 @@ class BamlStreamClient:
     ) -> baml_py.BamlStream[partial_types.CytoscapeJSON, types.CytoscapeJSON]:
       __tb__ = baml_options.get("tb", None)
       if __tb__ is not None:
-        tb = __tb__._tb
+        tb = __tb__._tb # type: ignore (we know how to use this private attribute)
       else:
         tb = None
       __cr__ = baml_options.get("client_registry", None)
