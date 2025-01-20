@@ -29,148 +29,39 @@ from .types import Checked, Check
 ###############################################################################
 
 
-class Answer(BaseModel):
-    
-    
-    answersInText: List["Citation"]
-    answer: Optional[str] = None
-
-class BookAnalysis(BaseModel):
-    
-    
-    bookNames: List[Optional[str]]
-    popularityOverTime: List["PopularityOverTime"]
-
-class CharacterDescription(BaseModel):
-    
-    
-    name: Optional[str] = None
-    clothingItems: List[Optional[str]]
-    hairColor: Optional[str] = None
-    smellDescription: Optional[str] = None
-    spells: List["Spells"]
-
-class Citation(BaseModel):
-    
-    
-    documentTitle: Optional[str] = None
-    sourceLink: Optional[str] = None
-    relevantTextFromDocument: Optional[str] = None
-    number: Optional[int] = None
-
 class Company(BaseModel):
-    
-    
     name: Optional[str] = None
-
-class Context(BaseModel):
-    
-    
-    documents: List["Document"]
 
 class CytoscapeEdge(BaseModel):
-    
-    
     data: Optional["CytoscapeEdgeData"] = None
 
 class CytoscapeEdgeData(BaseModel):
-    
-    
     id: Optional[str] = None
     source: Optional[str] = None
     target: Optional[str] = None
     label: Optional[str] = None
 
 class CytoscapeJSON(BaseModel):
-    
-    
     elements: Optional["Elements"] = None
 
 class CytoscapeNode(BaseModel):
-    
-    
     data: Dict[str, Optional[str]]
 
-class Document(BaseModel):
-    
-    
-    title: Optional[str] = None
-    text: Optional[str] = None
-    link: Optional[str] = None
-
 class DynamicOutput(BaseModel):
-    
     model_config = ConfigDict(extra='allow')
-    
-
-class Education(BaseModel):
-    
-    
-    school: Optional[str] = None
-    degree: Optional[str] = None
-    year: Optional[int] = None
 
 class Elements(BaseModel):
-    
-    
     nodes: List["CytoscapeNode"]
     edges: List["CytoscapeEdge"]
 
 class Event(BaseModel):
-    
-    
     name: Optional[str] = None
     description: Optional[str] = None
     link: Optional[str] = None
     speaker: Optional["Speaker"] = None
     datetime: Optional[str] = None
 
-class Message(BaseModel):
-    
-    
-    role: Optional[types.Role] = None
-    content: Optional[str] = None
-
-class PopularityOverTime(BaseModel):
-    
-    
-    bookName: Optional[str] = None
-    scores: List["Score"]
-
-class Ranking(BaseModel):
-    
-    
-    bookName: Optional[str] = None
-    score: Optional[int] = None
-
-class Resume(BaseModel):
-    
-    
-    name: Optional[str] = None
-    education: List["Education"]
-    skills: List[Optional[str]]
-
-class Score(BaseModel):
-    
-    
-    year: Optional[int] = None
-    score: Optional[int] = None
-
 class Speaker(BaseModel):
-    
-    
     name: Optional[str] = None
     title: Optional[str] = None
     company: Optional["Company"] = None
-
-class Spells(BaseModel):
-    
-    
-    name: Optional[str] = None
-    description: Optional[str] = None
-
-class WordCount(BaseModel):
-    
-    
-    bookName: Optional[str] = None
-    count: Optional[int] = None
